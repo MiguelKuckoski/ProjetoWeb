@@ -1,9 +1,6 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Shopping {
@@ -11,9 +8,14 @@ public class Shopping {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
-    private Product product;
     private Integer quantity;
     private Double price;
+
+    @ManyToOne
+    private Product product;
+
+    @ManyToOne
+    private ShoppingCart shoppingCart;
 
     public Shopping() {
     }
@@ -48,5 +50,13 @@ public class Shopping {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

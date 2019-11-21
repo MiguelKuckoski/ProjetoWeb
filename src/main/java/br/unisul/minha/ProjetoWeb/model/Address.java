@@ -1,9 +1,6 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -17,7 +14,9 @@ public class Address {
     private String complement;
     private String city;
     private State state;
-    private User usuario;
+
+    @OneToOne
+    private User user;
 
     public Address() {
     }
@@ -78,11 +77,11 @@ public class Address {
         this.state = state;
     }
 
-    public User getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

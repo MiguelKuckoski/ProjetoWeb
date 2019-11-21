@@ -1,11 +1,9 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -18,6 +16,12 @@ public class User {
     private String name;
     private LocalDate bornDate;
     private char sex;
+
+    @OneToOne
+    private Address address;
+
+    @OneToMany
+    private List<ShoppingCart> shoppingCart;
 
     public User() {
     }
@@ -68,5 +72,13 @@ public class User {
 
     public void setSex(char sex) {
         this.sex = sex;
+    }
+
+    public List<ShoppingCart> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(List<ShoppingCart> shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

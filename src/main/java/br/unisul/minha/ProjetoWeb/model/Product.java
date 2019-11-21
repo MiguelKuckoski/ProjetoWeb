@@ -1,9 +1,6 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -14,6 +11,9 @@ public class Product {
     private String name;
     private Double price;
     private Integer quantityAvailable;
+
+    @OneToOne
+    private Shopping shopping;
 
     public Product() {
     }
@@ -48,5 +48,13 @@ public class Product {
 
     public void setQuantityAvailable(Integer quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
+    }
+
+    public Shopping getShopping() {
+        return shopping;
+    }
+
+    public void setShopping(Shopping shopping) {
+        this.shopping = shopping;
     }
 }

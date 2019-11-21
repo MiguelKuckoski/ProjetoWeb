@@ -1,11 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,9 +10,13 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
+
+    @OneToOne
     private User user;
     private LocalDateTime date;
-    private List<Shopping> shoppings = new ArrayList<>();
+
+    @OneToMany
+    private List<Shopping> shopping;
 
     public ShoppingCart() {
     }
@@ -45,11 +45,11 @@ public class ShoppingCart {
         this.date = date;
     }
 
-    public List<Shopping> getShoppings() {
-        return shoppings;
+    public List<Shopping> getShopping() {
+        return shopping;
     }
 
-    public void setShoppings(List<Shopping> shoppings) {
-        this.shoppings = shoppings;
+    public void setShopping(List<Shopping> shopping) {
+        this.shopping = shopping;
     }
 }
