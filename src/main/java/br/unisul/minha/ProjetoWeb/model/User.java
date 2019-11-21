@@ -1,6 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -11,19 +12,37 @@ public class User {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull(message = "O login é obrigatório")
     private String login;
+
+    @NotNull(message = "A senha é obrigatória")
     private String password;
     private String name;
+
+    @NotNull(message = "A data de nascimento é obrigatória")
     private LocalDate bornDate;
+
+    @NotNull(message = "O sexo é obrigatório")
     private char sex;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private Address address;
 
     @OneToMany
     private List<ShoppingCart> shoppingCart;
 
     public User() {
+    }
+
+    public User(Integer id, String login, String password, String name, LocalDate bornDate, char sex, Address address) {
+        this.id =id;
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.bornDate = bornDate;
+        this.sex = sex;
+        this.address = address;
     }
 
     public Integer getId() {

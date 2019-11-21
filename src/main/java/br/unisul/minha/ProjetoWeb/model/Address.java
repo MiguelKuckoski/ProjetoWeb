@@ -1,6 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Address {
@@ -8,12 +9,14 @@ public class Address {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull(message = "O cep é obrigatório")
     private String zipcode;
     private String street;
     private String number;
     private String complement;
     private String city;
-    private State state;
+    private Integer state;
 
     @OneToOne
     private User user;
@@ -70,11 +73,11 @@ public class Address {
     }
 
     public State getState() {
-        return state;
+        return State.parse(state);
     }
 
     public void setState(State state) {
-        this.state = state;
+        this.state = state.getCodIbge();
     }
 
     public User getUser() {

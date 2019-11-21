@@ -1,6 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -12,10 +13,14 @@ public class Product {
     private Double price;
     private Integer quantityAvailable;
 
-    @OneToOne
-    private Shopping shopping;
-
     public Product() {
+    }
+
+    public Product(Integer id, String name, Double price, Integer quantityAvailable) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantityAvailable = quantityAvailable;
     }
 
     public Integer getId() {
@@ -48,13 +53,5 @@ public class Product {
 
     public void setQuantityAvailable(Integer quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
-    }
-
-    public Shopping getShopping() {
-        return shopping;
-    }
-
-    public void setShopping(Shopping shopping) {
-        this.shopping = shopping;
     }
 }
