@@ -1,5 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -26,7 +28,8 @@ public class User {
     @NotNull(message = "O sexo é obrigatório")
     private char sex;
 
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @JsonManagedReference
+    @OneToOne(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Address address;
 
     @OneToMany
@@ -35,14 +38,13 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String login, String password, String name, LocalDate bornDate, char sex, Address address) {
+    public User(Integer id, String login, String password, String name, LocalDate bornDate, char sex) {
         this.id =id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.bornDate = bornDate;
         this.sex = sex;
-        this.address = address;
     }
 
     public Integer getId() {
@@ -99,5 +101,13 @@ public class User {
 
     public void setShoppingCart(List<ShoppingCart> shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

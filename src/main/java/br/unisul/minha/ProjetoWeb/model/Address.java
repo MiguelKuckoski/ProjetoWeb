@@ -1,5 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -13,15 +15,27 @@ public class Address {
     @NotNull(message = "O cep é obrigatório")
     private String zipcode;
     private String street;
-    private String number;
+    private int number;
     private String complement;
     private String city;
     private Integer state;
 
-    @OneToOne
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
     public Address() {
+    }
+
+    public Address(Integer id, String zipcode, String street, int number, String complement, String city, State state, User user) {
+        this.id = id;
+        this.zipcode = zipcode;
+        this.street = street;
+        this.number = number;
+        this.complement = complement;
+        this.city = city;
+        this.state = state.getCodIbge();
+        this.user = user;
     }
 
     public Integer getId() {
@@ -48,11 +62,11 @@ public class Address {
         this.street = street;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
