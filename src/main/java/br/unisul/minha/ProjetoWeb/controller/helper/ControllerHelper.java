@@ -10,8 +10,9 @@ public class ControllerHelper {
         for (ObjectError error : result.getAllErrors())
             errors += "{\"object\": \"" + error.getObjectName() + "\", " +
                     "\"message\": \"" + error.getDefaultMessage() + "\"},";
-        if(errors.endsWith(","))
-            errors = errors.substring(0, errors.length() -1);
+
+        if (errors.endsWith(","))
+            errors = errors.substring(0, errors.length() - 1);
         errors += "]";
         return errors;
     }

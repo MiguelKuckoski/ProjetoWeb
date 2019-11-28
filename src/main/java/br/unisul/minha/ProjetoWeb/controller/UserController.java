@@ -6,14 +6,15 @@ import br.unisul.minha.ProjetoWeb.model.User;
 import br.unisul.minha.ProjetoWeb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/api/user")
+@Controller
 public class UserController {
 
     @Autowired
@@ -32,10 +33,16 @@ public class UserController {
         return ResponseEntity.ok().body("Cadastro realizado com sucesso.");
     }
 
-    @GetMapping(value = "/list")
-    public ResponseEntity list() {
-        List<User> users = userRepository.findAll();
-        return ResponseEntity.ok().body(users);
+    @GetMapping("/register")
+    public String register() { return "/register"; }
+
+    @GetMapping("/login")
+    public String login() {
+        return "/login";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "/login";
+    }
 }

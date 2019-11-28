@@ -38,6 +38,7 @@ public class ShoppingController {
 
     @PostMapping(value = "shoppingCart")
     public ResponseEntity newShopping(@RequestBody @Validated ShoppingCart shoppingCart, BindingResult result) {
+        //TODO validar quantidade de produto comprado/disponivel. Reduzir estoque do produto.
         if(result.hasErrors())
             return ResponseEntity.status(500).body(ControllerHelper.getErrors(result));
         shoppingCartRepository.save(shoppingCart);

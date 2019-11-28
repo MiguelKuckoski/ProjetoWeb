@@ -35,10 +35,9 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		Product p4 = new Product(null, "Produto 4", 18., 26);
 		Product p5 = new Product(null, "Produto 5", 86.99, 2);
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
-		User user = new User(null, "miguelKuckoski", "123456", "Miguel Kuckoski", LocalDate.now(), 'M');
+		User user = new User(null, "miguelfreitas32@gmail.com", "123456", "Miguel Kuckoski", LocalDate.now(), 'M');
 		Address address = new Address(null, "88090000", "Rua Prefeito Dib Cherem", 2349, "", "Florianópolis", State.SC, user);
 		user.setAddress(address);
 		userRepository.save(user);
-
 	}
 }
