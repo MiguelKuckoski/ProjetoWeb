@@ -6,10 +6,12 @@ import br.unisul.minha.ProjetoWeb.model.State;
 import br.unisul.minha.ProjetoWeb.model.User;
 import br.unisul.minha.ProjetoWeb.repositories.ProductRepository;
 import br.unisul.minha.ProjetoWeb.repositories.UserRepository;
+import br.unisul.minha.ProjetoWeb.service.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -21,7 +23,7 @@ public class ProjetoWebApplication implements CommandLineRunner {
 	private ProductRepository productRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	private ServiceUser serviceUser;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoWebApplication.class, args);
@@ -38,6 +40,6 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		User user = new User(null, "miguelfreitas32@gmail.com", "123456", "Miguel Kuckoski", LocalDate.now(), 'M');
 		Address address = new Address(null, "88090000", "Rua Prefeito Dib Cherem", 2349, "", "Florianópolis", State.SC, user);
 		user.setAddress(address);
-		userRepository.save(user);
+		serviceUser.save(user);
 	}
 }

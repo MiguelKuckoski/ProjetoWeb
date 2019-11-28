@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -17,6 +18,9 @@ public class SecurityConfig
 
 	@Autowired
 	private DataSource dataSource;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Value("${spring.queries.users-query}")
 	protected String userQuery;
@@ -30,7 +34,8 @@ public class SecurityConfig
 			.jdbcAuthentication()
 			.usersByUsernameQuery(userQuery)
 			.authoritiesByUsernameQuery(roleQuery)
-			.dataSource(dataSource);
+			.dataSource(dataSource)
+			.passwordEncoder(passwordEncoder);
 	}
 
 	@Override
@@ -39,13 +44,12 @@ public class SecurityConfig
 			.authorizeRequests()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/register").permitAll()
-			.antMatchers("/h2-console").permitAll()
 			.anyRequest()
 				.authenticated()
 					.and().csrf().disable()
 				.formLogin()
-					.loginPage("/login").failureUrl("/register").defaultSuccessUrl("/")
-					.usernameParameter("email").passwordParameter("password")
+					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/")
+					.usernameParameter("login").passwordParameter("password")
 				.and().logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 	}
