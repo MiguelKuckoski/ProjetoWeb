@@ -7,11 +7,14 @@
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body class="text-center">
-    <form class="form-signin" action="/login" method="post">
+    <form class="form-signin" id="loginForm" action="/login" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Projeto Web</h1>
         <input type="email" id="inputEmail" class="form-control" placeholder="Endereço de email" name="login" required autofocus>
         <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+        <label class="alert-danger" role="alert" th:if="${param.error}">
+						Usuário ou senha inválidos, por favor verifique.
+					</label>
         <p class="mt-5 mb-3 text-muted">&copy; Douglas Lima - Miguel Kuckoski</p>
         <a href="/register">Registre-se aqui</a>
     </form>
