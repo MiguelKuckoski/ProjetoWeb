@@ -51,3 +51,8 @@ body {
 .alert-danger {
 	margin-top: 10px;
 }
+
+.characterRequired::after {
+    content: '*';
+    color: red;
+}
