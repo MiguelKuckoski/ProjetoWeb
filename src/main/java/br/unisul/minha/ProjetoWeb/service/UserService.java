@@ -1,7 +1,7 @@
 package br.unisul.minha.ProjetoWeb.service;
 
 import br.unisul.minha.ProjetoWeb.model.User;
-import br.unisul.minha.ProjetoWeb.repositories.UserRepository;
+import br.unisul.minha.ProjetoWeb.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,21 +9,21 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class ServiceUser {
+public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     public String save(User user) {
-        String validation = validate(user);
-        if (validation.isEmpty()) {
+        String validate = validate(user);
+        if (validate.isEmpty()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
         }
-        return validation;
+        return validate;
     }
 
     public String validate(User user) {

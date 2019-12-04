@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Shopping {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer quantity;
     private Double price;
@@ -14,8 +14,8 @@ public class Shopping {
     @ManyToOne
     private Product product;
 
-    @ManyToOne
-    private ShoppingCart shoppingCart;
+    @OneToMany
+    private User user;
 
     public Shopping() {
     }
@@ -52,11 +52,11 @@ public class Shopping {
         this.price = price;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public User getUser() {
+        return user;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

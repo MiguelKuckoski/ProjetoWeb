@@ -1,48 +1,45 @@
 package br.unisul.minha.ProjetoWeb.controller;
 
-import br.unisul.minha.ProjetoWeb.controller.helper.ControllerHelper;
 import br.unisul.minha.ProjetoWeb.model.Shopping;
-import br.unisul.minha.ProjetoWeb.model.ShoppingCart;
-import br.unisul.minha.ProjetoWeb.repositories.ShoppingCartRepository;
-import br.unisul.minha.ProjetoWeb.repositories.ShoppingRepository;
+import br.unisul.minha.ProjetoWeb.service.ShoppingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/api/shoppingCart")
 public class ShoppingController {
 
     @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private ShoppingService shoppingService;
 
-    @Autowired
-    private ShoppingRepository shoppingRepository;
+    @GetMapping(value = "/")
+    public ModelAndView list() {
+        List<Shopping> shoppings = shoppingService.findAll();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/");
+        mv.addObject("shoppings", shoppings);
 
-    @GetMapping(value = "list")
-    public ResponseEntity list() {
-        List<Shopping> shoppings = shoppingRepository.findAll();
-        if(shoppings.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        return ResponseEntity.ok(shoppings);
+        return mv;
     }
 
-    @PostMapping(value = "shoppingCart")
-    public ResponseEntity newShopping(@RequestBody @Validated ShoppingCart shoppingCart, BindingResult result) {
-        //TODO validar quantidade de produto comprado/disponivel. Reduzir estoque do produto.
-        if(result.hasErrors())
-            return ResponseEntity.status(500).body(ControllerHelper.getErrors(result));
-        shoppingCartRepository.save(shoppingCart);
-        return ResponseEntity.ok().body("Compra efetuada com sucesso.");
+    @PostMapping(value = "shopping")
+    public ModelAndView newShopping(@Validated List<Shopping> shoppings, BindingResult result) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/");
+        if (result.hasErrors()) {
+            mv.addObject("shoppings", shoppings);
+        } else {
+            String validate = shoppingService.save(shoppings);
+            if(!validate.isEmpty())
+                mv.addObject("shoppings", validate);
+        }
+        return mv;
     }
 
 }

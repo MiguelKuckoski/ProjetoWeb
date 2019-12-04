@@ -4,8 +4,8 @@ import br.unisul.minha.ProjetoWeb.model.Address;
 import br.unisul.minha.ProjetoWeb.model.Product;
 import br.unisul.minha.ProjetoWeb.model.State;
 import br.unisul.minha.ProjetoWeb.model.User;
-import br.unisul.minha.ProjetoWeb.repositories.ProductRepository;
-import br.unisul.minha.ProjetoWeb.service.ServiceUser;
+import br.unisul.minha.ProjetoWeb.repositories.IProductRepository;
+import br.unisul.minha.ProjetoWeb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,10 +18,10 @@ import java.util.Arrays;
 public class ProjetoWebApplication implements CommandLineRunner {
 
 	@Autowired
-	private ProductRepository productRepository;
+	private IProductRepository productRepository;
 
 	@Autowired
-	private ServiceUser serviceUser;
+	private UserService userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoWebApplication.class, args);
@@ -39,6 +39,6 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		User user = new User(null, "miguelfreitas32@gmail.com", "123456", "123456","Miguel Kuckoski", localDate, 'M');
 		Address address = new Address(null, "88090000", "Rua Prefeito Dib Cherem", 2349, "", "Florianópolis", State.SC, user);
 		user.setAddress(address);
-		serviceUser.save(user);
+		userService.save(user);
 	}
 }

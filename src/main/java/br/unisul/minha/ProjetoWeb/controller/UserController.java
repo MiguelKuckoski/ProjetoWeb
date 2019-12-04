@@ -2,7 +2,7 @@ package br.unisul.minha.ProjetoWeb.controller;
 
 import javax.validation.Valid;
 
-import br.unisul.minha.ProjetoWeb.service.ServiceUser;
+import br.unisul.minha.ProjetoWeb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,13 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.unisul.minha.ProjetoWeb.model.Address;
 import br.unisul.minha.ProjetoWeb.model.User;
-import br.unisul.minha.ProjetoWeb.repositories.UserRepository;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private ServiceUser serviceUser;
+    private UserService userService;
 
 //    @PostMapping(value = "/register")
 //    public ResponseEntity register(@RequestBody @Validated User newUser, @Validated Address newAdress, BindingResult result) {
@@ -36,7 +35,7 @@ public class UserController {
     @PostMapping("/register")
     public ModelAndView registrar(@Valid User user, @Valid Address newAdress, BindingResult result) {
         ModelAndView mv = new ModelAndView();
-        User usr = serviceUser.findByLogin(user.getLogin());
+        User usr = userService.findByLogin(user.getLogin());
         if (usr != null) {
             result.rejectValue("email", "", "Usuário já cadastrado");
         }
@@ -45,10 +44,10 @@ public class UserController {
             mv.setViewName("/register");
             mv.addObject("usuario", user);
         } else {
-            String validation = serviceUser.save(user);
-            if (!validation.isEmpty()) {
+            String validate = userService.save(user);
+            if (!validate.isEmpty()) {
                 mv.setViewName("/register");
-                mv.addObject("usuario", validation);
+                mv.addObject("usuario", validate);
             }
             mv.setViewName("redirect:/login");
         }

@@ -1,10 +1,9 @@
 package br.unisul.minha.ProjetoWeb.repositories;
 
 import br.unisul.minha.ProjetoWeb.model.Product;
-import br.unisul.minha.ProjetoWeb.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.Repository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface IProductRepository extends JpaRepository<Product, Integer> {
 
-    User findByLogin(String login);
 }
