@@ -1,4 +1,21 @@
-.table{
-     
-    color: gray;
+#tabelaRelatorio{
+    width: 1700px;
+    color: black;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.td{
+    color: rgb(16, 16, 20);
+}
+
+header {
+    width: 100%;
+   
+
+   
 }
