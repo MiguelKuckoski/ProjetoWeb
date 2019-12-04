@@ -5,13 +5,11 @@ import br.unisul.minha.ProjetoWeb.model.Product;
 import br.unisul.minha.ProjetoWeb.model.State;
 import br.unisul.minha.ProjetoWeb.model.User;
 import br.unisul.minha.ProjetoWeb.repositories.ProductRepository;
-import br.unisul.minha.ProjetoWeb.repositories.UserRepository;
 import br.unisul.minha.ProjetoWeb.service.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -37,7 +35,8 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		Product p4 = new Product(null, "Produto 4", 18., 26);
 		Product p5 = new Product(null, "Produto 5", 86.99, 2);
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
-		User user = new User(null, "miguelfreitas32@gmail.com", "123456", "Miguel Kuckoski", LocalDate.now(), 'M');
+		LocalDate localDate = LocalDate.of(1998, 02, 13);
+		User user = new User(null, "miguelfreitas32@gmail.com", "123456", "123456","Miguel Kuckoski", localDate, 'M');
 		Address address = new Address(null, "88090000", "Rua Prefeito Dib Cherem", 2349, "", "Florianópolis", State.SC, user);
 		user.setAddress(address);
 		serviceUser.save(user);

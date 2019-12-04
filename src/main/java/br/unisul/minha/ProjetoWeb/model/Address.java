@@ -15,7 +15,7 @@ public class Address {
     @NotNull(message = "O cep é obrigatório")
     private String zipcode;
     private String street;
-    private int number;
+    private Integer number;
     private String complement;
     private String city;
     private Integer state;
