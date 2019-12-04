@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.unisul.minha.ProjetoWeb.model.Address;
 import br.unisul.minha.ProjetoWeb.model.User;
 import br.unisul.minha.ProjetoWeb.repositories.UserRepository;
 
@@ -32,7 +33,7 @@ public class UserController {
 //    }
 
 	@PostMapping("/register")
-	public ModelAndView registrar(@Valid User user, BindingResult result) {
+	public ModelAndView registrar(@Valid User user, @Valid Address newAdress, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		User usr = userRepository.findByLogin(user.getLogin());
 		if (usr != null) {

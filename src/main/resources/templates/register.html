@@ -27,24 +27,24 @@
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label class="characterRequired">Confirmar senha</label> <input type="password" required
-						maxlength="100" class="form-control" id="passwordConfirm" name="passwordConfirm" value="">
+						maxlength="100" class="form-control" id="confirmPassword" name="confirmPassword" value="">
 				</div>
 			</div>
 			<h5>Dados pessoais</h5>
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label class="characterRequired">Nome</label>
-					<input type="text" required maxlength="100" class="form-control" id="nome" name="nome" value="">
+					<input type="text" required maxlength="100" class="form-control" id="nome" name="name" value="">
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-3">
 					<label class="characterRequired">Data de nascimento</label> <input type="date" class="form-control"
-						id="date" name="date" required>
+						id="date" name="bornDate" min="1914-12-01" max="2014-12-01" required>
 				</div>
 				<div class="form-group col-md-3">
 					<label>Idade:</label>
-					<input type="number" class="form-control" id="idate" name="idade">
+					<input type="number" disabled class="form-control" id="idade" name="idade">
 				</div>
 			</div>
 			<div class="row">
@@ -52,12 +52,12 @@
 					<label class="characterRequired">Sexo</label>
 					<div class="form-check-inline">
 						<label class="form-check-label" for="radio1"> <input type="radio" class="form-check-input"
-								id="masculino" name="masculino" value="M" checked>Masculino
+								id="masculino" name="sex" value="M" checked>Masculino
 						</label>
 					</div>
 					<div class="form-check-inline">
 						<label class="form-check-label" for="radio1"> <input type="radio" class="form-check-input"
-								id="radio1" name="feminino" value="F" checked>Feminino
+								id="radio1" name="sex" value="F" checked>Feminino
 						</label>
 					</div>
 				</div>
@@ -65,32 +65,32 @@
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label class="characterRequired">Cep</label> <input type="number" required maxlength="100"
-						class="form-control" id="cep" name="cep" value="">
+						class="form-control" id="cep" name="zipcode" value="">
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label>Logradouro:</label> <input type="text" maxlength="100" class="form-control" id="logradouro"
-						name="logradouro" value="">
+						name="street" value="">
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-2">
 					<label>Número:</label> <input type="number" maxlength="30" class="form-control" id="numero"
-						name="numero" value="">
+						name="number" value="">
 				</div>
 				<div class="form-group col-md-4">
 					<label>Complemento:</label> <input type="text" maxlength="100" class="form-control" id="complemento"
-						name="complemento" value="">
+						name="complement" value="">
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-4">
 					<label>Cidade:</label> <input type="text" maxlength="100" class="form-control" id="cidade"
-						name="cidade" value="">
+						name="city" value="">
 				</div>
 				<div class="form-group col-md-2">
-					<label>UF:</label> <select class="form-control" id="estado">
+					<label>UF:</label> <select class="form-control" id="estado" name="state">
 						<option value="SC">Santa Catarina</option>
 						<option value="RS">Rio Grande do Sul</option>
 						<option value="SP">São Paulo</option>
@@ -98,8 +98,8 @@
 					</select>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Criar usuário</button>
-			<button type="submit" class="btn btn-secondary">Limpar</button>
+			<button type="submit" id="btnCriarUsuario" class="btn btn-primary">Criar usuário</button>
+			<button onclick="clearFields()" id="btnLimparCampos" class="btn btn-secondary">Limpar</button>
 		</form>
 	</div>
 	<script src="js/jquery-3.4.1.min.js"></script>
