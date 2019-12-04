@@ -43,3 +43,23 @@ $("#date").blur(function(){
         $("#btnCriarUsuario").attr("disabled",false);
     }
 });
+
+$("#password").blur(function(){
+    validPassword();
+});
+
+$("#confirmPassword").blur(function(){
+    validPassword();
+});
+
+function validPassword(){
+    var password = $("#password").val();
+    var confirmPassword = $("#confirmPassword").val();
+    if(password === confirmPassword){
+        $("#btnCriarUsuario").attr("disabled",false);
+        $("#alert").text("");
+    }else{
+        $("#btnCriarUsuario").attr("disabled",true);
+        $("#alert").text("Senha e confirmação de senha precisam ser iguais");
+    }
+}
