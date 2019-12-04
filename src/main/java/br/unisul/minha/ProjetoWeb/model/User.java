@@ -1,14 +1,11 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import java.time.LocalDate;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.time.LocalDate;
 
 @Entity
 public class User {
@@ -38,9 +35,6 @@ public class User {
 	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private Address address;
-
-	@OneToMany
-	private List<ShoppingCart> shoppingCart;
 
 	public User() {
 	}
@@ -101,14 +95,6 @@ public class User {
 
 	public void setSex(char sex) {
 		this.sex = sex;
-	}
-
-	public List<ShoppingCart> getShoppingCart() {
-		return shoppingCart;
-	}
-
-	public void setShoppingCart(List<ShoppingCart> shoppingCart) {
-		this.shoppingCart = shoppingCart;
 	}
 
 	public Address getAddress() {
