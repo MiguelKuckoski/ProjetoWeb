@@ -3,14 +3,7 @@ package br.unisul.minha.ProjetoWeb.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,6 +22,10 @@ public class User {
 
 	@NotNull(message = "A senha é obrigatória")
 	private String password;
+
+	@Transient
+	private String confirmPassword;
+
 	private String name;
 
 	@NotNull(message = "A data de nascimento é obrigatória")
@@ -48,13 +45,14 @@ public class User {
 	public User() {
 	}
 
-	public User(Integer id, String login, String password, String name, LocalDate bornDate, char sex) {
+	public User(Integer id, String login, String password, String confirmPassword,String name, LocalDate bornDate, char sex) {
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.name = name;
 		this.bornDate = bornDate;
 		this.sex = sex;
+		this.confirmPassword = confirmPassword;
 	}
 
 	public Integer getId() {
@@ -120,4 +118,14 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+
 }
