@@ -1,7 +1,6 @@
 package br.unisul.minha.ProjetoWeb.controller;
 
 import br.unisul.minha.ProjetoWeb.model.Product;
-import br.unisul.minha.ProjetoWeb.model.ShoppingList;
 import br.unisul.minha.ProjetoWeb.repositories.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

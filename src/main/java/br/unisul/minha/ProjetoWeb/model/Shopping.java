@@ -1,6 +1,7 @@
 package br.unisul.minha.ProjetoWeb.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Shopping {
@@ -15,6 +16,8 @@ public class Shopping {
 
     @OneToOne
     private User user;
+
+    private LocalDateTime shoppingDate;
 
     public Shopping() {
     }
@@ -49,5 +52,13 @@ public class Shopping {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getShoppingDate() {
+        return shoppingDate;
+    }
+
+    public void setShoppingDate(LocalDateTime shoppingDate) {
+        this.shoppingDate = shoppingDate;
     }
 }
