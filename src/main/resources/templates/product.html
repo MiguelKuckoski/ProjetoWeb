@@ -23,13 +23,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="product : ${products}" class="productList">
-                        <td><input th:type="number" th:id="'product' + ${product.id}" disabled th:value="${product.id}"/></td>
+                    <tr th:each="product, iter : ${products}" class="productList">
+                        <td><input th:type="number" th:id="'product' + ${iter.index}" disabled th:value="${product.id}"/></td>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.measure}"></td>
                         <td th:text="${product.price}"></td>
                         <td th:text="${product.quantityAvailable}"></td>
-                        <td><input th:type="number" th:id="'quantity' + ${product.id}"th:max="${product.quantityAvailable}" th:min="0" th:value="0" class="quantity"></td>
+                        <td><input th:type="number" th:id="'quantity' + ${iter.index}"th:max="${product.quantityAvailable}" th:min="0" th:value="0" class="quantity"></td>
                     </tr>
                 </tbody>
             </table>

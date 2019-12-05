@@ -21,7 +21,6 @@ public class ProductController {
         ModelAndView mv = new ModelAndView()    ;
         mv.setViewName("/product");
         mv.addObject("products", products);
-//        mv.addObject("shoppings", new ShoppingList());
         return mv;
     }
 }
