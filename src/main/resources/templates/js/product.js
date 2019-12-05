@@ -10,16 +10,17 @@ $("[type='number']").keypress(function (evt) {
 function save(){
 
     var action = '/shopping';
-    var dataObject = {
-        "Shopping" : [{
-            "productId": 1,
-            "userId":1,
-            "quantity":1
-        }, {
-            "productId": 2,
-            "userId":2,
-            "quantity":2
-        }]
+    var dataObject = {"shopDto":
+    [{
+    "userId":1,
+    "productId":1,
+    "quantity":1
+    },
+    {
+    "userId":2,
+    "productId":2,
+    "quantity":2
+    }]
     };
     var jsonObject = JSON.stringify(dataObject);
     $.ajax({
