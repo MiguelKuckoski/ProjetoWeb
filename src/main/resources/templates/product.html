@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Produtos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        .quantity {
+            max-width: 50px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="menu :: cabecalho"></div>
@@ -23,23 +30,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="product, iter : ${products}" class="productList">
-                        <td><input th:type="number" th:id="'product' + ${iter.index}" disabled th:value="${product.id}"/></td>
-                        <td th:text="${product.name}"></td>
-                        <td th:text="${product.measure}"></td>
-                        <td th:text="${product.price}"></td>
-                        <td th:text="${product.quantityAvailable}"></td>
-                        <td><input th:type="number" th:id="'quantity' + ${iter.index}"th:max="${product.quantityAvailable}" th:min="0" th:value="0" class="quantity"></td>
-                    </tr>
+                <tr th:each="product, iter : ${products}" class="productList">
+                    <td><label th:id="'product' + ${iter.index}" th:text="${product.id}"><label></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.measure}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.quantityAvailable}"></td>
+                    <td><input th:type="number" th:id="'quantity' + ${iter.index}" th:max="${product.quantityAvailable}"
+                               th:min="0" th:value="0" class="quantity"></td>
+                </tr>
                 </tbody>
             </table>
-            <button type="button" onclick="save()" id="btnCriarUsuario" class="btn btn-primary">Salvar solicitação</button>
-			<button type="button" onclick="clearFields()" class="btn btn-secondary">Cancelar</button>
+            <button type="button" onclick="save()" id="btnCriarUsuario" class="btn btn-primary">Salvar solicitação
+            </button>
+            <button type="button" onclick="clearFields()" class="btn btn-secondary">Cancelar</button>
         </form>
 
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	<script src="js/product.js"></script>
+    <script src="js/product.js"></script>
 </body>
 </html>
