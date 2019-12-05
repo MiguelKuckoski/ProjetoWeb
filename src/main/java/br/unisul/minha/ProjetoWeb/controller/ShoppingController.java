@@ -23,10 +23,16 @@ public class ShoppingController {
 	@GetMapping(value = "/report")
 	public ModelAndView list() {
 		List<Shopping> shoppings = shoppingService.findAll();
+		Double shoppingValue = 0.;
+		if(shoppings != null) {
+			for (Shopping shopping: shoppings) {
+				shoppingValue += shopping.getShoppingValue();
+			}
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/report");
 		mv.addObject("shoppings", shoppings);
-
+		mv.addObject("shoppingValue", shoppingValue);
 		return mv;
 	}
 

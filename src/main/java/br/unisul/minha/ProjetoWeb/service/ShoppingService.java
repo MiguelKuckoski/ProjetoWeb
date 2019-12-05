@@ -91,8 +91,8 @@ public class ShoppingService {
     }
 
     public List<Shopping> findAll() {
-        List<Shopping> shoppings = null;
-        shoppingRepository.findAll();
+        List<Shopping> shoppings = shoppingRepository.findAll();
+        shoppings.parallelStream().forEach(shopping -> shopping.calcShoppingValue());
         return shoppings;
     }
 }

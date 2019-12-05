@@ -19,7 +19,17 @@ public class Shopping {
 
     private LocalDateTime shoppingDate;
 
+    @Transient
+    private Double shoppingValue;
+
     public Shopping() {
+    }
+
+    public Shopping(Integer quantity, Product product, User user, LocalDateTime shoppingDate) {
+        this.quantity = quantity;
+        this.product = product;
+        this.user = user;
+        this.shoppingDate = shoppingDate;
     }
 
     public Integer getId() {
@@ -60,5 +70,17 @@ public class Shopping {
 
     public void setShoppingDate(LocalDateTime shoppingDate) {
         this.shoppingDate = shoppingDate;
+    }
+
+    public Double getShoppingValue() {
+        return shoppingValue;
+    }
+
+    public void setShoppingValue(Double shoppingValue) {
+        this.shoppingValue = shoppingValue;
+    }
+
+    public void calcShoppingValue() {
+       this.shoppingValue = this.product.getPrice() * this.quantity;
     }
 }
