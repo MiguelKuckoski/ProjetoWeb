@@ -29,6 +29,9 @@ function save(){
                 console.log("CRIADOO");
                 location.reload();
             }
+        },
+        error: function(){
+            alert("Erro ao salvar, atualiza a página e tente novamente");
         }
       })
 
