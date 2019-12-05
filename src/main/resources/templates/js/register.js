@@ -1,16 +1,20 @@
 $("#cep").blur(function () {
-    var urlCep = $('#cep').val();
-    var action = 'https://viacep.com.br/ws/' + urlCep + '/json/';
-    $.ajax({
-        url: action,
-        type: 'GET',
-        success: (response) => {
-            writeFields(response);
-        },
-        error: (errors) => {
-            alert("Erro ao buscar endereços pelo Cep, verifique sua conexão");
-        }
-    })
+    var cep = $('#cep').val();
+    if(cep){
+        var action = 'https://viacep.com.br/ws/' + cep + '/json/';
+        $.ajax({
+            url: action,
+            type: 'GET',
+            success: (response) => {
+                if(!response.erro){
+                    writeFields(response);
+                }
+            },
+            error: (errors) => {
+                alert("Erro ao buscar endereços pelo Cep, verifique sua conexão");
+            }
+        })
+    }
 });
 
 function writeFields(response) {
