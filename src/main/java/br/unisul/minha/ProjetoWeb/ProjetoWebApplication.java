@@ -29,11 +29,11 @@ public class ProjetoWebApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Product p2 = new Product(null, "Produto 2", 20.5, 6);
-		Product p1 = new Product(null, "Produto 1", 12.2, 1);
-		Product p3 = new Product(null, "Produto 3", 56.0, 9);
-		Product p4 = new Product(null, "Produto 4", 18., 26);
-		Product p5 = new Product(null, "Produto 5", 86.99, 2);
+		Product p2 = new Product(null, "Produto 2", 20.5, 6, "caixa com 10");
+		Product p1 = new Product(null, "Produto 1", 12.2, 1, "unidade");
+		Product p3 = new Product(null, "Produto 3", 56.0, 9, "fardo");
+		Product p4 = new Product(null, "Produto 4", 18., 26, "litros");
+		Product p5 = new Product(null, "Produto 5", 86.99, 2, "caixa com 20");
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		LocalDate localDate = LocalDate.of(1998, 02, 13);
 		User user = new User(null, "miguelfreitas32@gmail.com", "123456", "123456","Miguel Kuckoski", localDate, 'M');

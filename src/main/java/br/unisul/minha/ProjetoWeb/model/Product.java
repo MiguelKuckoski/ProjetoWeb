@@ -12,15 +12,17 @@ public class Product {
     private String name;
     private Double price;
     private Integer quantityAvailable;
+    private String measure;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, Double price, Integer quantityAvailable) {
+    public Product(Integer id, String name, Double price, Integer quantityAvailable, String measure) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantityAvailable = quantityAvailable;
+        this.measure = measure;
     }
 
     public Integer getId() {
@@ -53,5 +55,13 @@ public class Product {
 
     public void setQuantityAvailable(Integer quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 }

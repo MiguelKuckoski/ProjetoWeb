@@ -9,12 +9,11 @@ public class Shopping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer quantity;
-    private Double price;
 
     @ManyToOne
     private Product product;
 
-    @OneToMany
+    @OneToOne
     private User user;
 
     public Shopping() {
@@ -42,14 +41,6 @@ public class Shopping {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public User getUser() {
