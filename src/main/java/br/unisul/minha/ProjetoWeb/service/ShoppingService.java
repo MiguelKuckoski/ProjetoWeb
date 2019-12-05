@@ -29,8 +29,8 @@ public class ShoppingService {
     private UserService userService;
 
     public String save(Object jsonShoppings) {
-        Map jsonMap = (Map) jsonShoppings;
-        List<Shopping> shoppings = parser(jsonMap);
+        List<Object> jsonList = (ArrayList<Object>) jsonShoppings;
+        List<Shopping> shoppings = parser(jsonList);
         String validate = validate(shoppings);
         if(!shoppings.isEmpty()) {
             shoppingRepository.saveAll(shoppings);
@@ -41,14 +41,15 @@ public class ShoppingService {
         return validate;
     }
 
-    private List<Shopping> parser(Map jsonMap) {
+    private List<Shopping> parser(List<Object> jsonList) {
         List<Shopping> shoppings = null;
         try {
-            List<Map> shopDto = (ArrayList<Map>) jsonMap.get("shopDto");
             shoppings = new ArrayList<>();
-            for (Map shop : shopDto) {
-                if(((Integer) shop.getOrDefault("quantity", 0)) > 0 ) {
-                    Shopping shopping = createShopping(shop);
+            for (Object shop : jsonList) {
+                Map productMap = (Map) shop;
+                String quantity = (String) productMap.getOrDefault("quantity", "0");
+                if(Integer.parseInt(quantity) > 0 ) {
+                    Shopping shopping = createShopping(productMap);
                     shoppings.add(shopping);
                 }
             }
@@ -59,7 +60,8 @@ public class ShoppingService {
     }
 
     private Shopping createShopping(Map shop) {
-        Optional<Product> product = productRepository.findById((Integer) shop.get("userId"));
+        String productId = (String) shop.get("productId");
+        Optional<Product> product = productRepository.findById(Integer.parseInt(productId));
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = null;
         if (principal instanceof UserDetails) {
@@ -68,7 +70,8 @@ public class ShoppingService {
         }
         Shopping shopping = new Shopping();
         shopping.setProduct(product.get());
-        shopping.setQuantity((Integer) shop.get("quantity"));
+        String quantity = (String) shop.get("quantity");
+        shopping.setQuantity(Integer.parseInt(quantity));
         shopping.setUser(user);
         shopping.setShoppingDate(LocalDateTime.now());
         return shopping;

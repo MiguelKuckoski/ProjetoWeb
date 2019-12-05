@@ -8,20 +8,16 @@ $("[type='number']").keypress(function (evt) {
 });
 
 function save(){
-
     var action = '/shopping';
-    var dataObject = {"shopDto":
-    [{
-    "userId":1,
-    "productId":1,
-    "quantity":1
-    },
-    {
-    "userId":2,
-    "productId":2,
-    "quantity":2
-    }]
-    };
+    var dataObject = [];
+
+    $("tbody > tr").each(function(index, value) {
+        let product = $("#product" + index).val();
+        let quantity = $("#quantity" + index).val();
+        let object = {"productId": product, "quantity": quantity};
+        dataObject.push({"productId": product, "quantity": quantity});
+    })
+
     var jsonObject = JSON.stringify(dataObject);
     $.ajax({
         url: action,
