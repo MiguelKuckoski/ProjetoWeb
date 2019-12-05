@@ -1,7 +1,7 @@
 package br.unisul.minha.ProjetoWeb.controller;
 
-import java.util.List;
-
+import br.unisul.minha.ProjetoWeb.model.Shopping;
+import br.unisul.minha.ProjetoWeb.service.ShoppingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.unisul.minha.ProjetoWeb.model.Shopping;
-import br.unisul.minha.ProjetoWeb.service.ShoppingService;
+import java.util.List;
 
 @Controller
 public class ShoppingController {
