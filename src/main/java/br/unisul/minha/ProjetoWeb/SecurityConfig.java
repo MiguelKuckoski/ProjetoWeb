@@ -44,6 +44,7 @@ public class SecurityConfig
 			.authorizeRequests()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/register").permitAll()
+			.antMatchers("/h2-console").permitAll()
 			.anyRequest()
 				.authenticated()
 					.and().csrf().disable()

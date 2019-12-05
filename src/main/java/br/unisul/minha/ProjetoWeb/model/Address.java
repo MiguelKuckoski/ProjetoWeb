@@ -90,8 +90,8 @@ public class Address {
         return State.parse(state);
     }
 
-    public void setState(State state) {
-        this.state = state.getCodIbge();
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public User getUser() {
