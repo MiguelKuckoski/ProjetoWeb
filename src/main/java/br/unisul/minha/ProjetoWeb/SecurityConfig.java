@@ -1,5 +1,7 @@
 package br.unisul.minha.ProjetoWeb;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -10,11 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.sql.DataSource;
-
 @Configuration
-public class SecurityConfig
-		extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
@@ -29,34 +28,22 @@ public class SecurityConfig
 	private String roleQuery;
 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		auth
-			.jdbcAuthentication()
-			.usersByUsernameQuery(userQuery)
-			.authoritiesByUsernameQuery(roleQuery)
-			.dataSource(dataSource)
-			.passwordEncoder(passwordEncoder);
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication().usersByUsernameQuery(userQuery).authoritiesByUsernameQuery(roleQuery)
+				.dataSource(dataSource).passwordEncoder(passwordEncoder);
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception{
-		http
-			.authorizeRequests()
-			.antMatchers("/login").permitAll()
-			.antMatchers("/register").permitAll()
-			.antMatchers("/h2-console").permitAll()
-			.anyRequest()
-				.authenticated()
-					.and().csrf().disable()
-				.formLogin()
-					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/")
-					.usernameParameter("login").passwordParameter("password")
-				.and().logout()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/register").permitAll()
+				.antMatchers("/h2-console").permitAll().anyRequest().authenticated().and().csrf().disable().formLogin()
+				.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/").usernameParameter("login")
+				.passwordParameter("password").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login");
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**");
+		web.ignoring().antMatchers("/css/**", "/js/**", "/imgs/**");
 	}
 }
