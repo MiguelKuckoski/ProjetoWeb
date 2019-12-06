@@ -40,7 +40,7 @@ $("#date").blur(function () {
     var hoje = new Date();
     var diferencaAnos = idade(nascimento, hoje);
     $("#idade").val(diferencaAnos);
-    if (diferencaAnos > 105 || diferencaAnos < 5) {
+    if (diferencaAnos > 120 || diferencaAnos < 5) {
         $("#btnCriarUsuario").attr("disabled", true);
         alert("Idade deve ser entre 5 e 105 anos");
     } else {

@@ -36,8 +36,8 @@ public class ProjetoWebApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Product p1 = new Product(null, "barbeador", 12.2, 1, "unidade");
 		Product p2 = new Product(null, "fifa19", 20.5, 6, "caixa com 10");
-		Product p3 = new Product(null, "monitor", 56.0, 9, "fardo");
-		Product p4 = new Product(null, "mouse", 18., 26, "litros");
+		Product p3 = new Product(null, "monitor", 56.0, 9, "unidade");
+		Product p4 = new Product(null, "mouse", 18., 26, "unidade");
 		Product p5 = new Product(null, "rexona", 86.99, 2, "caixa com 20");
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		LocalDate localDate = LocalDate.of(1998, 02, 13);

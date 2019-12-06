@@ -43,8 +43,11 @@ public class UserController {
 	}
 
 	@GetMapping("/register")
-	public String register() {
-		return "/register";
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/register");
+		mv.addObject("user", new User());
+		return mv;
 	}
 
 	@GetMapping("/login")
