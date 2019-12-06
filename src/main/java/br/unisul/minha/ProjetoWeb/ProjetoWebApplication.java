@@ -4,14 +4,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import br.unisul.minha.ProjetoWeb.model.*;
-import br.unisul.minha.ProjetoWeb.repositories.IShoppingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.unisul.minha.ProjetoWeb.model.Address;
+import br.unisul.minha.ProjetoWeb.model.Product;
+import br.unisul.minha.ProjetoWeb.model.Shopping;
+import br.unisul.minha.ProjetoWeb.model.State;
+import br.unisul.minha.ProjetoWeb.model.User;
 import br.unisul.minha.ProjetoWeb.repositories.IProductRepository;
+import br.unisul.minha.ProjetoWeb.repositories.IShoppingRepository;
 import br.unisul.minha.ProjetoWeb.service.UserService;
 
 @SpringBootApplication
@@ -32,11 +36,11 @@ public class ProjetoWebApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Product p1 = new Product(null, "Produto 1", 12.2, 1, "unidade");
-		Product p2 = new Product(null, "Produto 2", 20.5, 6, "caixa com 10");
-		Product p3 = new Product(null, "Produto 3", 56.0, 9, "fardo");
-		Product p4 = new Product(null, "Produto 4", 18., 26, "litros");
-		Product p5 = new Product(null, "Produto 5", 86.99, 2, "caixa com 20");
+		Product p1 = new Product(null, "barbeador", 12.2, 1, "unidade");
+		Product p2 = new Product(null, "fifa19", 20.5, 6, "caixa com 10");
+		Product p3 = new Product(null, "monitor", 56.0, 9, "fardo");
+		Product p4 = new Product(null, "mouse", 18., 26, "litros");
+		Product p5 = new Product(null, "rexona", 86.99, 2, "caixa com 20");
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		LocalDate localDate = LocalDate.of(1998, 02, 13);
 		User user = new User(null, "teste@teste.com", "123", "123", "Miguel Kuckoski", localDate, 'M');
@@ -51,6 +55,6 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		Shopping s4 = new Shopping(2, p4, user, LocalDateTime.now());
 		Shopping s5 = new Shopping(10, p5, user, LocalDateTime.now());
 
-		shoppingRepository.saveAll(Arrays.asList(s1,s2,s3,s4,s5));
+		shoppingRepository.saveAll(Arrays.asList(s1, s2, s3, s4, s5));
 	}
 }
