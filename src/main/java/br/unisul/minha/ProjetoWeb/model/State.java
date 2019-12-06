@@ -1,11 +1,5 @@
 package br.unisul.minha.ProjetoWeb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
 public enum State {
 
     RO(11,"Rondônia"),
@@ -36,7 +30,6 @@ public enum State {
     GO(52,"Goiás"),
     DF(53,"Distrito Federal");
 
-    @Id
     private final int codIbge;
     private final String name;
 
