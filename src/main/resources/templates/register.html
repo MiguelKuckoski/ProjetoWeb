@@ -11,9 +11,12 @@
 <body>
 	<div class="container" style="height: 100%">
 		<h2>Cadastro de usuário</h2>
-		<form class="" action="/register" method="post" id="registerForm">
+		<form class="" action="/register" method="post" id="registerForm" th:object="${user}">
 			<div class="row">
 				<div class="form-group col-md-6">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('login')}">
+					<label th:errors="*{login}" class="validation-message"></label>
+				</div>		
 					<label class="characterRequired">Login</label> <input type="text" required maxlength="50"
 						class="form-control" id="login" name="login" value="">
 				</div>

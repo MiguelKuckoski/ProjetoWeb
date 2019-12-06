@@ -1,7 +1,6 @@
 package br.unisul.minha.ProjetoWeb;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.unisul.minha.ProjetoWeb.model.Address;
 import br.unisul.minha.ProjetoWeb.model.Product;
-import br.unisul.minha.ProjetoWeb.model.Shopping;
 import br.unisul.minha.ProjetoWeb.model.State;
 import br.unisul.minha.ProjetoWeb.model.User;
 import br.unisul.minha.ProjetoWeb.repositories.IProductRepository;
@@ -49,12 +47,12 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		user.setAddress(address);
 		userService.save(user);
 
-		Shopping s1 = new Shopping(1, p1, user, LocalDateTime.now());
-		Shopping s2 = new Shopping(4, p2, user, LocalDateTime.now());
-		Shopping s3 = new Shopping(6, p3, user, LocalDateTime.now());
-		Shopping s4 = new Shopping(2, p4, user, LocalDateTime.now());
-		Shopping s5 = new Shopping(10, p5, user, LocalDateTime.now());
+//		Shopping s1 = new Shopping(1, p1, user, LocalDateTime.now());
+//		Shopping s2 = new Shopping(4, p2, user, LocalDateTime.now());
+//		Shopping s3 = new Shopping(6, p3, user, LocalDateTime.now());
+//		Shopping s4 = new Shopping(2, p4, user, LocalDateTime.now());
+//		Shopping s5 = new Shopping(10, p5, user, LocalDateTime.now());
 
-		shoppingRepository.saveAll(Arrays.asList(s1, s2, s3, s4, s5));
+//		shoppingRepository.saveAll(Arrays.asList(s1, s2, s3, s4, s5));
 	}
 }
