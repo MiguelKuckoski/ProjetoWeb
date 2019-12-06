@@ -32,7 +32,6 @@ function save(){
         data: jsonObject,   
         statusCode:{
             201: function(responseObject, textStatus, jqXHR) {
-                console.log("CRIADOO");
                 location.reload();
             }
         },
