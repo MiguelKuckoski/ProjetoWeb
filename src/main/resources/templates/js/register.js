@@ -67,3 +67,9 @@ function validPassword() {
         $('#alertSenha').attr('hidden',false);
     }
 }
+
+$("#numero").blur(function(){
+    if(!$(this).val()){
+        $(this).val("0");
+    }
+})
