@@ -33,7 +33,7 @@
                 <tbody>
                 <tr th:each="product, iter : ${products}" class="productList">
                     <td><label th:id="'product' + ${iter.index}" th:text="${product.id}"><label></td>
-                    <td><label class="product-name" th:text="${product.name}" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="setImg(this)"></label></td>
+                    <td><label title="Clique para visualizar o produto" class="product-name" th:text="${product.name}" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="setImg(this)"></label></td>
                     <td th:text="${product.measure}"></td>
                     <td th:text="${product.price}"></td>
                     <td th:text="${product.quantityAvailable}"></td>
