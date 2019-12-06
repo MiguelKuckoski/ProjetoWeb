@@ -40,11 +40,10 @@ public class ProjetoWebApplication implements CommandLineRunner {
 		Product p4 = new Product(null, "mouse", 18., 26, "unidade");
 		Product p5 = new Product(null, "rexona", 86.99, 2, "caixa com 20");
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
 		LocalDate localDate = LocalDate.of(1998, 02, 13);
-		User user = new User(null, "teste@teste.com", "123", "123", "Miguel Kuckoski", localDate, 'M');
-		Address address = new Address(null, "88090000", "Rua Prefeito Dib Cherem", 2349, "", "Florianópolis", State.SC,
-				user);
-		user.setAddress(address);
+		Address address = new Address(null, "88090000", "Rua Prefeito Dib Cherem", 2349, "", "Florianópolis", State.SC);
+		User user = new User(null, "teste@teste.com", "123", "123", "Miguel Kuckoski", localDate, 'M', address);
 		userService.save(user);
 
 //		Shopping s1 = new Shopping(1, p1, user, LocalDateTime.now());
@@ -52,7 +51,6 @@ public class ProjetoWebApplication implements CommandLineRunner {
 //		Shopping s3 = new Shopping(6, p3, user, LocalDateTime.now());
 //		Shopping s4 = new Shopping(2, p4, user, LocalDateTime.now());
 //		Shopping s5 = new Shopping(10, p5, user, LocalDateTime.now());
-
 //		shoppingRepository.saveAll(Arrays.asList(s1, s2, s3, s4, s5));
 	}
 }

@@ -39,7 +39,7 @@ public class User {
 	public User() {
 	}
 
-	public User(Integer id, String login, String password, String confirmPassword,String name, LocalDate bornDate, char sex) {
+	public User(Integer id, String login, String password, String confirmPassword,String name, LocalDate bornDate, char sex, Address address) {
 		this.id = id;
 		this.login = login;
 		this.password = password;
@@ -47,6 +47,7 @@ public class User {
 		this.bornDate = bornDate;
 		this.sex = sex;
 		this.confirmPassword = confirmPassword;
+		this.address = address;
 	}
 
 	public Integer getId() {

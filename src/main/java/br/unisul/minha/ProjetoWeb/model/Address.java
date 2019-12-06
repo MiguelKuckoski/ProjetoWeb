@@ -20,14 +20,10 @@ public class Address {
     private String city;
     private Integer state;
 
-    @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
-    private User user;
-
     public Address() {
     }
 
-    public Address(Integer id, String zipcode, String street, int number, String complement, String city, State state, User user) {
+    public Address(Integer id, String zipcode, String street, int number, String complement, String city, State state) {
         this.id = id;
         this.zipcode = zipcode;
         this.street = street;
@@ -35,7 +31,6 @@ public class Address {
         this.complement = complement;
         this.city = city;
         this.state = state.getCodIbge();
-        this.user = user;
     }
 
     public Integer getId() {
@@ -94,11 +89,4 @@ public class Address {
         this.state = state;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
