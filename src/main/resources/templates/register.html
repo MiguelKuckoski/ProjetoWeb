@@ -11,7 +11,7 @@
 <body>
 	<div class="container" style="height: 100%">
 		<h2>Cadastro de usuário</h2>
-		<form class="" action="/register" method="post" id="registerForm" th:object="${user}">
+		<form class="" style="margin-bottom: 20px" action="/register" method="post" id="registerForm" th:object="${user}">
 			<div class="row">
 				<div class="form-group col-md-6">
 				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('login')}">
@@ -23,6 +23,9 @@
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
+				<div class="alert alert-danger" role="alert" hidden id="alertSenha">
+					<label class="validation-message"> Senha e confirmação de senha precisam ser iguais</label>
+				</div>
 					<label class="characterRequired">Senha</label> <input type="password" required maxlength="100"
 						class="form-control" id="password" name="password" value="">
 				</div>
@@ -100,8 +103,6 @@
 					</select>
 				</div>
 			</div>
-
-			<p id="alert" class="mt-5 mb-3 text-muted"></p>
 			<button type="submit" id="btnCriarUsuario" class="btn btn-primary">Criar usuário</button>
 			<button type="button" onclick="clearFields()" id="btnLimparCampos" class="btn btn-secondary">Limpar</button>
 		</form>

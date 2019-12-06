@@ -61,9 +61,9 @@ function validPassword() {
     var confirmPassword = $("#confirmPassword").val();
     if (password === confirmPassword) {
         $("#btnCriarUsuario").attr("disabled", false);
-        $("#alert").text("");
+        $('#alertSenha').attr('hidden',true);
     } else {
         $("#btnCriarUsuario").attr("disabled", true);
-        $("#alert").text("Senha e confirmação de senha precisam ser iguais");
+        $('#alertSenha').attr('hidden',false);
     }
 }
